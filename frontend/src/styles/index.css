@@ -1,0 +1,294 @@
+/* ============================================
+   TAILWIND CSS - Base, Components, Utilities
+   ============================================ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   ESTILOS GLOBALES PERSONALIZADOS
+   ============================================ */
+
+/* Body - Fuente global */
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900;
+    @apply text-gray-800;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Inputs globales */
+  input:disabled {
+    @apply cursor-not-allowed opacity-60;
+  }
+
+  button:disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+}
+
+/* ============================================
+   ANIMACIONES PERSONALIZADAS
+   ============================================ */
+
+@layer components {
+  /* Animación de pulso suave para éxito */
+  .animate-pulse-subtle {
+    animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse-subtle {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.95;
+    }
+  }
+
+  /* Animación de entrada suave */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Animación de deslizamiento */
+  .animate-slide-in {
+    animation: slideIn 0.3s ease-out;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Animación de escala al hover */
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+
+  /* Animación de brillo */
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+}
+
+/* ============================================
+   COMPONENTES REUTILIZABLES
+   ============================================ */
+
+@layer components {
+  /* Botones base */
+  .btn {
+    @apply px-4 py-2 rounded-lg font-semibold transition-all duration-300;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply btn bg-purple-600 text-white hover:bg-purple-700;
+    @apply focus:ring-purple-500;
+  }
+
+  .btn-secondary {
+    @apply btn bg-pink-600 text-white hover:bg-pink-700;
+    @apply focus:ring-pink-500;
+  }
+
+  .btn-success {
+    @apply btn bg-green-500 text-white hover:bg-green-600;
+    @apply focus:ring-green-400;
+  }
+
+  .btn-danger {
+    @apply btn bg-red-500 text-white hover:bg-red-600;
+    @apply focus:ring-red-400;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-white rounded-lg shadow-xl p-6;
+  }
+
+  .card-gradient {
+    @apply bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg shadow-xl p-6;
+  }
+
+  /* Inputs */
+  .input-base {
+    @apply w-full px-3 py-2 rounded-lg border border-gray-300;
+    @apply focus:outline-none focus:ring-2 focus:ring-purple-500;
+    @apply transition-all duration-200;
+  }
+
+  .input-dark {
+    @apply bg-white bg-opacity-20 text-white placeholder-gray-200;
+    @apply focus:ring-white;
+  }
+
+  /* Tabla */
+  .table-row-hover {
+    @apply border-b hover:bg-purple-50 transition-colors;
+  }
+
+  /* Alert */
+  .alert {
+    @apply rounded-lg p-4 flex justify-between items-center;
+    @apply animate-fade-in;
+  }
+
+  .alert-error {
+    @apply bg-red-50 border-2 border-red-500 text-red-700;
+  }
+
+  .alert-success {
+    @apply bg-green-50 border-2 border-green-500 text-green-700;
+  }
+
+  .alert-warning {
+    @apply bg-yellow-50 border-2 border-yellow-500 text-yellow-700;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-block px-3 py-1 rounded-full text-sm font-semibold;
+  }
+
+  .badge-purple {
+    @apply bg-purple-100 text-purple-800;
+  }
+
+  .badge-pink {
+    @apply bg-pink-100 text-pink-800;
+  }
+
+  .badge-green {
+    @apply bg-green-100 text-green-800;
+  }
+
+  /* Container */
+  .container-main {
+    @apply max-w-7xl mx-auto px-4 py-6;
+  }
+
+  /* Sección */
+  .section {
+    @apply mb-6;
+  }
+
+  .section-title {
+    @apply text-2xl font-bold text-gray-800 mb-4;
+  }
+
+  /* Espaciado */
+  .gap-section {
+    @apply grid grid-cols-1 lg:grid-cols-3 gap-6;
+  }
+}
+
+/* ============================================
+   SCROLL Y BARRAS
+   ============================================ */
+
+/* Scroll personalizado */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* ============================================
+   RESPONSIVE UTILITIES
+   ============================================ */
+
+@layer components {
+  /* Ocultar en mobile */
+  .hidden-mobile {
+    @apply hidden md:block;
+  }
+
+  /* Mostrar solo en mobile */
+  .mobile-only {
+    @apply md:hidden;
+  }
+
+  /* Padding responsive */
+  .px-responsive {
+    @apply px-4 md:px-6 lg:px-8;
+  }
+
+  .py-responsive {
+    @apply py-4 md:py-6 lg:py-8;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  body {
+    background: white;
+  }
+
+  .no-print {
+    display: none;
+  }
+}
+
+/* ============================================
+   DARK MODE (Opcional)
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+  @layer base {
+    body {
+      @apply bg-gray-900 text-gray-100;
+    }
+  }
+}
