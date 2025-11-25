@@ -1,6 +1,9 @@
-// Configuración de la URL base del API
-// CAMBIA ESTO CON TU IP/DOMINIO DE AWS
-const API_BASE_URL = "http://localhost:8000";
+// api.js
+
+// URL base del API
+// En desarrollo usa localhost:8000
+// En producción puedes definir VITE_API_BASE_URL en tu .env de Vite
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
 export const apiService = {
   /**
@@ -10,24 +13,25 @@ export const apiService = {
    * @param {number} pageSize - Cantidad de items por página (default: 20)
    * @returns {Promise<Array>} Lista de canciones
    */
-  fetchTracks: async (search = '', page = 1, pageSize = 20) => {
+  fetchTracks: async (search = "", page = 1, pageSize = 20) => {
     try {
-      const params = new URLSearchParams({ 
-        search, 
-        page, 
-        page_size: pageSize 
+      const params = new URLSearchParams({
+        search,
+        page,
+        page_size: pageSize,
       });
+
       const response = await fetch(
-        `${API_BASE_URL}/api/tracks?${params}`
+        `${API_BASE_URL}/api/tracks?${params.toString()}`
       );
-      
+
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
       }
-      
+
       return await response.json();
     } catch (error) {
-      console.error('Error fetching tracks:', error);
+      console.error("Error fetching tracks:", error);
       throw error;
     }
   },
@@ -50,9 +54,9 @@ export const apiService = {
   ) => {
     try {
       const response = await fetch(`${API_BASE_URL}/api/checkout`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           guestEmail,
@@ -69,7 +73,7 @@ export const apiService = {
 
       return await response.json();
     } catch (error) {
-      console.error('Error during checkout:', error);
+      console.error("Error during checkout:", error);
       throw error;
     }
   },
