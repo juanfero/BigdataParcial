@@ -7,18 +7,18 @@ import CheckoutForm from './components/CheckoutForm';
 import SuccessResult from './components/SuccessResult';
 import { useCart } from './hooks/useCart';
 import { apiService } from './services/api';
-import './styles/App.css'  // ← Actualiza esta ruta si existe
+import './styles/App.css';
 
 /**
  * Componente Alert para mostrar errores
  */
 function Alert({ message, onClose }) {
   return (
-    <div className="bg-red-50 border-2 border-red-500 rounded-lg p-4 mb-4 flex justify-between items-center">
-      <p className="text-red-700 font-semibold">⚠️ {message}</p>
+    <div className="alert alert-error">
+      <p style={{ margin: 0 }}>⚠️ {message}</p>
       <button
         onClick={onClose}
-        className="text-red-700 font-bold hover:text-red-900"
+        className="alert-error-close"
       >
         ✕
       </button>
@@ -111,23 +111,25 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="app-wrapper">
       {/* Header */}
       <Header cartCount={cart.cart.length} />
 
-      <main className="max-w-7xl mx-auto p-6">
+      <main className="main-content">
         {/* Alert de errores */}
         {error && (
-          <Alert message={error} onClose={() => setError(null)} />
+          <div className="alert-section">
+            <Alert message={error} onClose={() => setError(null)} />
+          </div>
         )}
 
         {/* Contenido principal */}
         {!successResult ? (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="tracks-section">
             {/* Columna izquierda - Tabla de canciones */}
-            <div className="lg:col-span-2">
-              <div className="bg-white rounded-lg shadow-xl p-6 mb-6">
-                <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            <div>
+              <div className="tracks-panel">
+                <h2 className="tracks-title">
                   🎵 Canciones Disponibles
                 </h2>
 
@@ -148,7 +150,7 @@ function App() {
             </div>
 
             {/* Columna derecha - Carrito y Checkout */}
-            <div className="space-y-6">
+            <div className="right-panel">
               {/* Carrito */}
               <Cart
                 cart={cart.cart}

@@ -4,18 +4,18 @@
  */
 function Header({ cartCount }) {
   return (
-    <header className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-6 shadow-lg">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+    <header className="header">
+      <div className="header-content">
         {/* Logo y Título */}
-        <div>
-          <h1 className="text-4xl font-bold">♪ Music Store</h1>
-          <p className="text-purple-100 text-sm">AWS + FastAPI Demo</p>
+        <div className="header-left">
+          <h1>♪ Music Store</h1>
+          <p>AWS + FastAPI Demo</p>
         </div>
 
         {/* Contador del Carrito */}
-        <div className="text-right">
-          <div className="text-sm text-purple-100">Carrito</div>
-          <div className="text-3xl font-bold">🛒 {cartCount}</div>
+        <div className="header-right">
+          <div className="header-right-label">Carrito</div>
+          <div className="header-right-count">🛒 {cartCount}</div>
         </div>
       </div>
     </header>

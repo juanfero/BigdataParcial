@@ -24,7 +24,7 @@ function SearchBar({ onSearch, onLoadTracks, isLoading }) {
   };
 
   return (
-    <div className="flex gap-2 mb-6">
+    <div className="search-bar">
       {/* Input de búsqueda */}
       <input
         type="text"
@@ -32,7 +32,7 @@ function SearchBar({ onSearch, onLoadTracks, isLoading }) {
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
         onKeyPress={handleKeyPress}
-        className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+        className="search-input"
         disabled={isLoading}
       />
 
@@ -40,7 +40,7 @@ function SearchBar({ onSearch, onLoadTracks, isLoading }) {
       <button
         onClick={handleSearch}
         disabled={isLoading}
-        className="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition font-semibold disabled:opacity-50"
+        className="btn-search"
       >
         Buscar
       </button>
@@ -49,7 +49,7 @@ function SearchBar({ onSearch, onLoadTracks, isLoading }) {
       <button
         onClick={onLoadTracks}
         disabled={isLoading}
-        className="bg-pink-600 text-white px-6 py-2 rounded-lg hover:bg-pink-700 transition font-semibold disabled:opacity-50"
+        className="btn-load"
       >
         {isLoading ? 'Cargando...' : 'Cargar'}
       </button>
